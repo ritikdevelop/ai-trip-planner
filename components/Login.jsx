@@ -4,8 +4,7 @@ import { Colors } from "@/constants/Colors";
 import { useRouter } from "expo-router";
 
 export default function Login() {
-
-    const router = useRouter()
+  const router = useRouter();
 
   return (
     <View>
@@ -40,7 +39,10 @@ export default function Login() {
           your fingertips. Travel smarter with AI-driven insights."
         </Text>
 
-        <TouchableOpacity style={styles.button} onPress={() => router.push("/auth/sign-in")}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push("/auth/sign-in")}
+        >
           <Text
             style={{
               color: Colors.WHITE,
