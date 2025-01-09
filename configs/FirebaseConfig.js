@@ -5,7 +5,7 @@ import {  getAuth, getReactNativePersistence } from 'firebase/auth';
 
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: "AIzaSyDp_iIR6C_3N5tgnlRt5aoeCPQ4xd0sHiY",
   authDomain: "mobile-application-14af2.firebaseapp.com",
   projectId: "mobile-application-14af2",
   storageBucket: "mobile-application-14af2.firebasestorage.app",
