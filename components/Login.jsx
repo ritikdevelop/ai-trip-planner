@@ -24,7 +24,7 @@ export default function Login() {
             marginTop: 10,
           }}
         >
-          AI Travel Planner
+          AI Trip Planner
         </Text>
         <Text
           style={{
