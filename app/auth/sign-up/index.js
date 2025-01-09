@@ -5,20 +5,21 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { Colors } from "../../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../configs/FirebaseConfig";
+import { ToastAndroid } from "react-native";
 
 export default function SignUp() {
   const navigation = useNavigation();
   const router = useRouter();
 
-    const [fullName, setFullName] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+  const [fullName, setFullName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   useEffect(() => {
     navigation.setOptions({
@@ -26,19 +27,24 @@ export default function SignUp() {
     });
   }, []);
 
+  // ! Create Account Function
   const OnCreateAccount = () => {
+    if (!email || !password || !fullName) {
+      ToastAndroid.show("Please fill all the fields", ToastAndroid.LONG);
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         //! Signed up
         const user = userCredential.user;
+        router.replace("/myTrip");
         console.log(user);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
       });
   };
 
@@ -63,6 +69,7 @@ export default function SignUp() {
       >
         Create New Account
       </Text>
+
       {/* //! User Full Name */}
       <View
         style={{
@@ -124,8 +131,10 @@ export default function SignUp() {
           onChangeText={(value) => setPassword(value)}
         />
       </View>
+
       {/* //! Create Account Button */}
       <TouchableOpacity
+        onPress={OnCreateAccount}
         style={{
           padding: 13,
           backgroundColor: Colors.PRIMARY,
@@ -144,6 +153,7 @@ export default function SignUp() {
           Create Account
         </Text>
       </TouchableOpacity>
+
       {/* //! Sign In Button */}
       <TouchableOpacity
         onPress={() => router.replace("/auth/sign-in")}
