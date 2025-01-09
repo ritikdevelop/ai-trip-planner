@@ -8,6 +8,15 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "router": {
+      "routes": [
+        {
+          "name": "create-trip",
+          "path": "/create-trip/search-place",
+          "component": "./app/create-trip/search-place"
+        }
+      ]
+    },
     "ios": {
       "supportsTablet": true
     },
